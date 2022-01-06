@@ -17,13 +17,17 @@ const Home = () => {
 
     //hook con función del botón de menú
     const [ToggleSidebar, setToggleSidebar] = useState(false);
-    
-    //Se crea el hook con user
+    //hook con user
     const [user, setUser] = useState(null);
+    //Hook Ref
+    const scrollRef = useRef(null);
+
 
     //Se crea el usuario. Se comprueba que no sea indefinido, de no serlo se obtiene se convierte a JSON. De no tener al usuario se le hace un clear
     const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
     
+
+
     //Ahora el user se saca de sanity. Este componente tendrá un dependecy array vacio
     useEffect(() => {
       //Sanity query. Se llama de utils
@@ -35,37 +39,42 @@ const Home = () => {
        })
     }, []);
 
+    useEffect(() => {
+       
+    }, [input])
 
     return (
         //se coloca flex container medium devices empty column, high of screen. Aminación a la medida que el div carga ease out
         <div className= "flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
             {/* el display será hidden pero dispositivos medium serán flex, porque se tendrán dos diferentes sidebars, una para moviles y otro la web   */}
             <div className="hidden md:flex h-screen flex-initial">
-                <Sidebar />                
+                {/*Si el usuario existe, entonces envía el usuario, de lo contrario: false*/}
+                <Sidebar user={user && user} />                
             </div> 
             {/*se */}
             <div className="flex md:hidden flex-row">
                 {/*se coloca icono y statefield para la función del menú. El setToggle se manda true indicando la posibilidad de abrirlo y cerrarlo*/ }
-                <HiMenu fontSize={40} className='cursor-pointer' onClick={() => setToggleSidebar(true)}/>
+                <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToggleSidebar(true)} />
                 <Link to="/">
-                    <img src={logo} alt="logo" className='w-28'/>
+                    <img src={logo} alt="logo" className="w-28" />
                 </Link>
                 {/*Ahora apunta a un bloque dinámico de código. No se sabe el usuario pero se saca del local storage*/ }
-                <Link to={'user-profile/${user?._id}'}>
-                    <img src={user?.image} alt="logo" className='w-28'/>
+                <Link to={`user-profile/${user?._id}`}>
+                    <img src={user?.image} alt="user-pic" className="w-9 h-9 rounded-full " />
                 </Link>
             </div>
             {/*Se comprueba si el sidebar está toggling. Se prepara para mostrar algo */}
             {ToggleSidebar && ( 
                 /*tomará 4f del espacio*/
-                <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md <-10 animate-slide-in">
-                    <div className='abosulte w-full flex justify-end items-center p-2'>
-                        <AiFillCloseCircle fontSize={30} className='cursor-pointer' onClick={() => setToggleSidebar(false)}/>
+                <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
+                    <div className="absolute w-full flex justify-end items-center p-2">
+                        <AiFillCloseCircle fontSize={30} className="cursor-pointer" onClick={() => setToggleSidebar(false)} />
                     </div>
-                    {/*Se renderiza el sidebar de nuevo. Sidebar MOVIL*/}
-                    <Sidebar/>
-                </div>   
+                    {/*Se renderiza el sidebar de nuevo. Sidebar user={} MOVIL*/}
+                    <Sidebar closeToggle={setToggleSidebar} user={user && user} />
+                </div>  
             )}
+            <div className='pb-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}></div>
         </div>
     )
 }
