@@ -1,10 +1,31 @@
-//Acá van todas las imagenes
-import React from 'react'
+//Pins aloja todas las imagenes
 
-const Pins = () => {
+import React, { useState } from 'react'
+import { Routes, Route } from 'react-router-dom';
+
+import { Navbar, Feed, PinDetail, CreatePin, Search } from '../components';
+
+//props user dado que en home estamos mandándolo
+const Pins = ({ user }) => {
+
+      //Se crea searchTerm. Se crea acá porque se debe compartir entre múltiples componentes
+    const [searchTerm, setSearchTerm] = useState('')
+
     return (
-        <div>
-            Pins
+        <div className='px-2 md:px-5'>
+           <div className='bg-gray-50'>
+                {/*props */}
+                <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user} />
+            </div>
+            <div className='h-full'>
+                <Routes>
+                    <Route path="/" element={<Feed/>}/>
+                    <Route path="/category/:categoryId" element={<Feed/>} />
+                    <Route path="/pin-detail/:pinId" element={<PinDetail user={user}/> } />
+                    <Route path="/create-pin" element={<CreatePin user={user}/>}/>
+                    <Route path="/search" element={<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>}/>
+                </Routes>
+            </div>
         </div>
     )
 }
