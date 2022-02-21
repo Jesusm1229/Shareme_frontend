@@ -122,7 +122,7 @@ User 1, User que salvaron imagen [2,3,1] -> [1].length -> 1 -> !1 -> false -> !f
                                 className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:100 hover:shadow-md'
                                 >
                                 <BsFillArrowUpRightCircleFill/>
-                                    { destination.lenght > 16 ? destination.slice(8, 16): destination.slice(8)}
+                                    { destination.length > 20 ? destination.slice(8, 20): destination.slice(8)}
                                 </a>
                             )}
 
