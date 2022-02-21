@@ -12,6 +12,7 @@ import { userQuery } from '../utils/data';
 
 import { client } from '../client';
 import logo from '../assets/logo.png';
+import { fetchUser } from '../utils/fetchUser';
 
 const Home = () => {
 
@@ -24,8 +25,7 @@ const Home = () => {
 
 
     //Se crea el usuario. Se comprueba que no sea indefinido, de no serlo se obtiene se convierte a JSON. De no tener al usuario se le hace un clear
-    const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
-    
+    const userInfo = fetchUser();
 
 
     //Ahora el user se saca de sanity. Este componente tendrá un dependecy array vacio
