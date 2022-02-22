@@ -10,6 +10,8 @@ import Spinner from './Spinner';
 import { IoMdHeartEmpty } from 'react-icons/io';
 
 const PinDetail = ({ user }) => {
+  //ID. Se toma un hook
+  const { pinId } = useParams();
 
  const [pins, setPins] = useState(null);
  const [pinDetail, setpinDetail] = useState(null);
@@ -37,8 +39,6 @@ const addComment = () => {
 };
 
 
- //ID. Se toma un hook
- const { pinId } = useParams();
  
   const fetchPinDetails = () =>{
     const query = pinDetailQuery(pinId);
@@ -63,10 +63,15 @@ const addComment = () => {
     fetchPinDetails();
   }, [pinId])
 
-  if(!PinDetail) return <Spinner message = "Cargando detalles del Pin..."/>
+  if (!pinDetail) {
+    return (
+      <Spinner message="Mostrando pin" />
+    );
+  }
 
   return (
     <>
+    {pinDetail && (
     <div className="flex xl:flex-row flex-col m-auto bg-white" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
       <div className="flex justify-center items-center md:items-start flex-initial">
         <img
@@ -142,6 +147,7 @@ const addComment = () => {
         </div>
       </div>
     </div>
+    )}
 
       {pins?.length > 0 && (
         <h2 className="text-center font-bold text-2xl mt-8 mb-4">
