@@ -1,4 +1,4 @@
-//Pins aloja todas las imagenes
+//Pins aloja todas los pin component
 
 import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
