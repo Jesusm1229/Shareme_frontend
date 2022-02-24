@@ -5,18 +5,12 @@ import { RiHomeFill } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
 
 import logo from '../assets/logo.png';
+import { categories } from '../utils/data';
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize';
 
-const categories = [
-    {name: 'Animales'},
-    {name: 'Wallpapers'},
-    {name: 'Fotografía'},
-    {name: 'Gaming'},
-    {name: 'Coding'},
-    {name: 'Otros'}
-]
+
 
 const sidebar = ({ user, closeToggle }) => {
     const handleCloseSidebar = () => {
@@ -53,6 +47,7 @@ const sidebar = ({ user, closeToggle }) => {
                             //El key es para recorrer el array
                             key={category.name}
                         >
+                         <img src={category.image} className="w-8 h-8 rounded-full shadow-sm" />
                             {category.name}
                         </NavLink>
                     ))}                    
