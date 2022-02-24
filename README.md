@@ -1,3 +1,10 @@
+Social network for pictures & photos
+
+Developed in Reactjs with Tailwind for the styles & Sanity for the backend and Database, this project offers an intuitive web page where users can share their photographic content to the world.
+
+![image](https://user-images.githubusercontent.com/48733708/155600519-1564bed3-4afc-44e2-906a-a8f043c97b05.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
