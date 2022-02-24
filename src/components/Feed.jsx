@@ -40,7 +40,9 @@ const Feed = () => {
     }
  }, [categoryId])
 
- if(loading) return <Spinner message={"Estamos añadiendo ${ideaName}  a tu Feed"}/>
+ const ideaName = categoryId || 'todo';
+
+ if(loading) return <Spinner message={`Estamos añadiendo nuevas ideas de ${ideaName} a tu Feed`}/>
 
  if(!pins?.length) return <h2>No hay pins disponibles</h2>
 
