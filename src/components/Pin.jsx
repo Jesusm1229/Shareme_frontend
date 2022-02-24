@@ -24,7 +24,7 @@ const Pin = ({ pin: {postedBy, image, _id, destination, save} }) => {
  //Se necesita saber si el user ya salvó o no un pin. Esto se hace haciendo una comprobación con el id de google del usuario 
  //Detalle de optimización: como destruimos el save en la declaración de pin, podemos referir al save? directo
  //Encerrar en paréntesis lo vuelve numero, ! booleano
- const alredySaved = !!(save?.filter((item) => item.postedBy._id === userInfo?.googleId))?.length;
+ const alredySaved = !!(save?.filter((item) => item?.postedBy?._id === userInfo?.googleId))?.length;
  
 /*Explicación detallada de lo que ocurre arriba:
 User 1, User que salvaron imagen [2,3,1] -> [1].length -> 1 -> !1 -> false -> !false -> true
