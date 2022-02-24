@@ -33,7 +33,7 @@ const Search = ({ searchTerm }) => {
 
   }, [searchTerm]) // cambiará cada vez que el el término de búsqueda cambie
 
-  1
+  
 
   return (
     <div>
